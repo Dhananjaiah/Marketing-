@@ -3,6 +3,24 @@ Funnel Strategy Module
 Generates pricing models, conversion strategies, and funnel designs
 """
 
+# Default pricing configuration (can be customized per course)
+DEFAULT_PRICING = {
+    "basic_price": 2999,
+    "basic_original": 9999,
+    "pro_price": 4999,
+    "pro_original": 14999,
+    "premium_price": 9999,
+    "premium_original": 29999
+}
+
+# Market comparison data (update as needed)
+MARKET_COMPARISON = {
+    "college_course": {"price": 100000, "duration": "2 years"},
+    "other_online": {"price": 15000, "duration": "6 months"},
+    "techitfactory": {"duration": "30 days"},
+    "avg_salary_increase": "₹3-5 LPA"
+}
+
 def generate_funnel(course_title):
     """Generate course funnel strategy (Free → Paid)"""
     return {
@@ -70,15 +88,18 @@ def generate_funnel(course_title):
     }
 
 
-def generate_pricing(course_title):
+def generate_pricing(course_title, pricing_config=None):
     """Generate pricing model and discount suggestions"""
+    # Use provided config or default
+    config = pricing_config if pricing_config else DEFAULT_PRICING
+    
     return {
         "pricing_tiers": {
             "basic": {
                 "name": "Self-Paced Learning",
-                "price": "₹2,999",
-                "original_price": "₹9,999",
-                "discount": "70% OFF",
+                "price": f"₹{config['basic_price']:,}",
+                "original_price": f"₹{config['basic_original']:,}",
+                "discount": f"{int((1 - config['basic_price']/config['basic_original']) * 100)}% OFF",
                 "features": [
                     f"Complete {course_title} course",
                     "Lifetime access",
@@ -91,9 +112,9 @@ def generate_pricing(course_title):
             
             "pro": {
                 "name": "Pro Learning (Most Popular)",
-                "price": "₹4,999",
-                "original_price": "₹14,999",
-                "discount": "67% OFF",
+                "price": f"₹{config['pro_price']:,}",
+                "original_price": f"₹{config['pro_original']:,}",
+                "discount": f"{int((1 - config['pro_price']/config['pro_original']) * 100)}% OFF",
                 "features": [
                     "Everything in Basic +",
                     "Live doubt clearing sessions",
@@ -108,9 +129,9 @@ def generate_pricing(course_title):
             
             "premium": {
                 "name": "Premium + Mentorship",
-                "price": "₹9,999",
-                "original_price": "₹29,999",
-                "discount": "67% OFF",
+                "price": f"₹{config['premium_price']:,}",
+                "original_price": f"₹{config['premium_original']:,}",
+                "discount": f"{int((1 - config['premium_price']/config['premium_original']) * 100)}% OFF",
                 "features": [
                     "Everything in Pro +",
                     "1-on-1 mentorship (4 sessions)",
@@ -141,18 +162,18 @@ def generate_pricing(course_title):
         
         "scarcity_tactics": [
             "Only 50 seats available this batch",
-            "Price increases to ₹4,999 after 100 enrollments",
+            f"Price increases to ₹{config['pro_price']:,} after 100 enrollments",
             "Bonus materials available only for first 50 students",
             "Live sessions limited to 30 participants"
         ],
         
         "value_justification": f"""
 Compare the investment:
-- Regular college course: ₹1,00,000 + 2 years
-- Other online courses: ₹15,000 + 6 months
-- TechITFactory: ₹2,999 + 30 days ← Best ROI!
+- Regular college course: ₹{MARKET_COMPARISON['college_course']['price']:,} + {MARKET_COMPARISON['college_course']['duration']}
+- Other online courses: ₹{MARKET_COMPARISON['other_online']['price']:,} + {MARKET_COMPARISON['other_online']['duration']}
+- TechITFactory: ₹{config['basic_price']:,} + {MARKET_COMPARISON['techitfactory']['duration']} ← Best ROI!
 
-After completing this course, average salary increase: ₹3-5 LPA
+After completing this course, average salary increase: {MARKET_COMPARISON['avg_salary_increase']}
 Your investment pays back in first month of new job! 🚀
 """
     }

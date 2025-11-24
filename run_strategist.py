@@ -72,7 +72,11 @@ def main():
     }
     
     # Save to JSON file
-    output_file = f"marketing_strategy_{course_title.replace(' ', '_').lower()}.json"
+    # Sanitize filename to prevent directory traversal and filesystem issues
+    import re
+    safe_filename = re.sub(r'[^a-z0-9_\-]', '_', course_title.lower())
+    safe_filename = re.sub(r'_+', '_', safe_filename).strip('_')
+    output_file = f"marketing_strategy_{safe_filename}.json"
     with open(output_file, 'w', encoding='utf-8') as f:
         json.dump(strategy, f, indent=2, ensure_ascii=False)
     

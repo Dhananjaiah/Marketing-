@@ -3,8 +3,14 @@ Growth Planner Module
 Generates 30-day plans, content calendars, influencer strategies, and community building
 """
 
-def generate_30_day_plan(course_title):
+# Default course pricing for revenue calculations
+DEFAULT_COURSE_PRICE = 2999
+
+def generate_30_day_plan(course_title, course_price=None):
     """Generate detailed 30-day growth plan"""
+    # Use provided price or default
+    price = course_price if course_price else DEFAULT_COURSE_PRICE
+    
     return {
         "week_1": {
             "focus": "Awareness Building",
@@ -12,7 +18,7 @@ def generate_30_day_plan(course_title):
                 "reach": "1000+ people",
                 "leads": "50+ email signups",
                 "conversions": "5+ enrollments",
-                "revenue": "₹15,000+"
+                "revenue": f"₹{price * 5:,}+"
             },
             "daily_tasks": {
                 "monday": ["Create YouTube video", "Design 5 Instagram posts", "Write blog post"],
@@ -38,7 +44,7 @@ def generate_30_day_plan(course_title):
                 "reach": "2000+ people",
                 "leads": "100+ email signups",
                 "conversions": "10+ enrollments",
-                "revenue": "₹30,000+"
+                "revenue": f"₹{price * 10:,}+"
             },
             "daily_tasks": {
                 "monday": ["Launch lead magnet", "Create landing page", "Set up email automation"],
@@ -64,7 +70,7 @@ def generate_30_day_plan(course_title):
                 "reach": "3000+ people",
                 "leads": "150+ email signups",
                 "conversions": "15+ enrollments",
-                "revenue": "₹45,000+"
+                "revenue": f"₹{price * 15:,}+"
             },
             "daily_tasks": {
                 "monday": ["Email sequence Day 1", "Retargeting ads", "Case studies"],
@@ -90,7 +96,7 @@ def generate_30_day_plan(course_title):
                 "reach": "4000+ people",
                 "leads": "200+ email signups",
                 "conversions": "20+ enrollments",
-                "revenue": "₹60,000+"
+                "revenue": f"₹{price * 20:,}+"
             },
             "daily_tasks": {
                 "monday": ["Scale winning ads", "Increase budget", "New audiences"],
@@ -111,9 +117,9 @@ def generate_30_day_plan(course_title):
         },
         
         "success_criteria": {
-            "minimum": "30 enrollments in 30 days (₹89,970 revenue)",
-            "target": "50 enrollments in 30 days (₹1,49,950 revenue)",
-            "stretch": "100 enrollments in 30 days (₹2,99,900 revenue)"
+            "minimum": f"30 enrollments in 30 days (₹{price * 30:,} revenue)",
+            "target": f"50 enrollments in 30 days (₹{price * 50:,} revenue)",
+            "stretch": f"100 enrollments in 30 days (₹{price * 100:,} revenue)"
         },
         
         "budget_allocation": {
