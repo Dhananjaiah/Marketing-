@@ -50,7 +50,7 @@ git clone https://github.com/Dhananjaiah/Marketing-.git
 cd Marketing-
 
 # Make the script executable
-chmod +x marketing_strategist.py
+chmod +x run_strategist.py
 ```
 
 ### Usage
@@ -58,28 +58,19 @@ chmod +x marketing_strategist.py
 #### Basic Usage
 ```bash
 # Generate marketing strategy for a course
-python3 marketing_strategist.py "Complete DevOps with Kubernetes"
+python3 run_strategist.py "Complete DevOps with Kubernetes"
 ```
 
 #### Advanced Usage
 ```python
-from marketing_strategist import MarketingStrategist
+from strategies import content_generator, funnel_strategy, growth_planner
 
-# Initialize strategist
-strategist = MarketingStrategist()
-
-# Generate comprehensive strategy
-strategy = strategist.analyze_course("Kubernetes Mastery")
-
-# Access specific components
-landing_page = strategy['landing_page']
-ad_scripts = strategy['ad_scripts']
-email_sequence = strategy['email_sequence']
-
-# Generate individual components
-seo_content = strategist.generate_seo_content("MLOps Course")
-funnel = strategist.generate_funnel_strategy("DevOps Bootcamp")
-pricing = strategist.generate_pricing_model("Cloud Computing")
+# Generate specific components
+landing_page = content_generator.generate_landing_page("Kubernetes Mastery")
+seo_content = content_generator.generate_seo_content("MLOps Course")
+funnel = funnel_strategy.generate_funnel("DevOps Bootcamp")
+pricing = funnel_strategy.generate_pricing("Cloud Computing")
+growth_plan = growth_planner.generate_30_day_plan("Docker Mastery")
 ```
 
 ## 📋 What Gets Generated

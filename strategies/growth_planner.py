@@ -202,9 +202,15 @@ def generate_content_calendar(course_title):
         
         "hashtag_strategy": {
             "high_volume": ["#DevOps", "#Kubernetes", "#MLOps", "#CloudComputing", "#TechCareers"],
-            "medium_volume": [f"#{course_title.replace(' ', '')}", "#LearnDevOps", "#TechEducation", "#IndianDevelopers"],
+            "medium_volume": [
+                f"#{''.join(word.capitalize() for word in course_title.split()[:3])}", 
+                "#LearnDevOps", 
+                "#TechEducation", 
+                "#IndianDevelopers"
+            ],
             "branded": ["#TechITFactory", "#TeluguTech", "#LearnInTelugu"],
-            "mix_formula": "2 high + 3 medium + 2 branded + 3 niche = 10 hashtags per post"
+            "mix_formula": "2 high + 3 medium + 2 branded + 3 niche = 10 hashtags per post",
+            "example": f"Example: #DevOps #Kubernetes #{''.join(word.capitalize() for word in course_title.split()[:2])} #TechITFactory #LearnDevOps"
         },
         
         "content_ideas": {
